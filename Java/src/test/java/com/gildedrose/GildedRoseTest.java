@@ -2,16 +2,22 @@ package com.gildedrose;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
+
 
 class GildedRoseTest {
 
     @Test
-    void foo() {
-        Item[] items = new Item[]{new Item("foo", 0, 0)};
-        GildedRose app = new GildedRose(items);
-        app.updateQuality();
-        assertEquals("fixme", app.items[0].name);
+    void passageOfDayLowersSellInOfItem() {
+        // Given
+        Item[] items = new Item[]{new Item("normalItem", 10, 50)};
+        GildedRose gildedRose = new GildedRose(items);
+
+        // When
+        gildedRose.updateQuality();
+
+        // Then
+        assertThat(gildedRose.getItems().get(0).sellIn).isEqualTo(9);
     }
 
     @Test
