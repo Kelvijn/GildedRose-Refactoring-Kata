@@ -11,7 +11,7 @@ class GildedRoseTest {
     @Test
     void passageOfDayLowersSellInOfItem() {
         // Given
-        Item[] items = new Item[]{new Item("normalItem", 10, 50)};
+        Item[] items = new Item[]{new Item(APPLE, 10, 50)};
         GildedRose gildedRose = new GildedRose(items);
 
         // When
@@ -24,7 +24,7 @@ class GildedRoseTest {
     @Test
     void passageOfDayCountsHowManyDaysItemIsExpired() {
         // Given
-        Item[] items = new Item[]{new Item("item", 0, 50)};
+        Item[] items = new Item[]{new Item(APPLE, 0, 50)};
         GildedRose gildedRose = new GildedRose(items);
 
         // When
@@ -37,7 +37,7 @@ class GildedRoseTest {
     @Test
     void degradeQualityWhenDayHasPassed() {
         // Given
-        Item[] items = new Item[]{new Item("item", 10, 50)};
+        Item[] items = new Item[]{new Item(APPLE, 10, 50)};
         GildedRose gildedRose = new GildedRose(items);
 
         // When
@@ -50,7 +50,7 @@ class GildedRoseTest {
     @Test
     void degradeQualityTwiceAsFastWhenSellDateHasPassed() {
         // Given
-        Item[] items = new Item[]{new Item("item", 0, 50)};
+        Item[] items = new Item[]{new Item(APPLE, 0, 50)};
         GildedRose gildedRose = new GildedRose(items);
 
         // When
@@ -63,7 +63,7 @@ class GildedRoseTest {
     @Test
     void qualityOfItemCannotBeNegative() {
         // Given
-        Item[] items = new Item[]{new Item("item", 0, 0)};
+        Item[] items = new Item[]{new Item(APPLE, 0, 0)};
         GildedRose gildedRose = new GildedRose(items);
 
         // When
