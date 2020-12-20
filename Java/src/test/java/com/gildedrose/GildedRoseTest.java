@@ -1,9 +1,11 @@
 package com.gildedrose;
 
+import com.gildedrose.exceptions.ItemValidationException;
 import org.junit.jupiter.api.Test;
 
 import static com.gildedrose.Catalogue.*;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.catchThrowable;
 
 
 class GildedRoseTest {
@@ -110,6 +112,19 @@ class GildedRoseTest {
 
         // Then
         assertThat(gildedRose.getItems().get(0).quality).isEqualTo(80);
+    }
+
+    @Test
+    void failWhenItemsContainsSulfarasQualityIsNot80() {
+        // Given
+        Item[] items = new Item[]{new Item(SULFARAS, 0, 60)};
+        GildedRose gildedRose = new GildedRose(items);
+
+        // When
+        Throwable thrown = catchThrowable(gildedRose::updateQuality);
+
+        // Then
+        assertThat(thrown).isInstanceOf(ItemValidationException.class);
     }
 
     @Test
