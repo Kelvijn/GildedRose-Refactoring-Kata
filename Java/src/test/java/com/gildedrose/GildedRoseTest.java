@@ -128,6 +128,19 @@ class GildedRoseTest {
     }
 
     @Test
+    void failWhenItemIsNotAddedToCatalogue() {
+        // Given
+        Item[] items = new Item[]{new Item("randomItem", 0, 60)};
+        GildedRose gildedRose = new GildedRose(items);
+
+        // When
+        Throwable thrown = catchThrowable(gildedRose::updateQuality);
+
+        // Then
+        assertThat(thrown).isInstanceOf(ItemValidationException.class);
+    }
+
+    @Test
     void qualityOfBackStagePassIncreasesByOne() {
         // Given
         Item[] items = new Item[]{new Item(BACKSTAGE_PASS.getName(), 20, 30)};

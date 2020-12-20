@@ -1,7 +1,10 @@
 package com.gildedrose;
 
+import com.gildedrose.exceptions.ItemValidationException;
+
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 class GildedRose {
     Item[] items;
@@ -15,6 +18,17 @@ class GildedRose {
     }
 
     public void updateQuality() {
+        boolean itemsAreAddedToCatalogue = getItems()
+                .stream()
+                .allMatch(item -> Arrays.stream(Catalogue.values())
+                        .map(Catalogue::getName)
+                        .collect(Collectors.toList())
+                        .contains(item.name));
+
+      if(!itemsAreAddedToCatalogue){
+          throw new ItemValidationException("Please add all items to catalogue");
+      }
+
         for (int i = 0; i < items.length; i++) {
             if (!items[i].name.equals("Aged Brie")
                     && !items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
