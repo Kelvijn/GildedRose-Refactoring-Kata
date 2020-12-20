@@ -18,16 +18,18 @@ class GildedRose {
     }
 
     public void updateQuality() {
+
+        List<String> catalogue = Arrays.stream(Catalogue.values()).map(Catalogue::getName).collect(Collectors.toList());
+
         boolean itemsAreAddedToCatalogue = getItems()
                 .stream()
-                .allMatch(item -> Arrays.stream(Catalogue.values())
-                        .map(Catalogue::getName)
-                        .collect(Collectors.toList())
-                        .contains(item.name));
+                .map(item -> item.name)
+                .allMatch(catalogue::contains);
 
       if(!itemsAreAddedToCatalogue){
           throw new ItemValidationException("Please add all items to catalogue");
       }
+
 
         for (int i = 0; i < items.length; i++) {
             if (!items[i].name.equals("Aged Brie")
