@@ -163,4 +163,17 @@ class GildedRoseTest {
         // Then
         assertThat(gildedRose.getItems().get(0).quality).isEqualTo(0);
     }
+
+    @Test
+    void conjuredItemDegradeTwiceAsFast() {
+        // Given
+        Item[] items = new Item[]{new Item(CONJURED, 10, 30)};
+        GildedRose gildedRose = new GildedRose(items);
+
+        // When
+        gildedRose.updateQuality();
+
+        // Then
+        assertThat(gildedRose.getItems().get(0).quality).isEqualTo(28);
+    }
 }
