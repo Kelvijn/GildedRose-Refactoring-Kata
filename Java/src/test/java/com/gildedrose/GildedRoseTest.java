@@ -13,7 +13,7 @@ class GildedRoseTest {
     @Test
     void passageOfDayLowersSellInOfItem() {
         // Given
-        Item[] items = new Item[]{new Item(APPLE, 10, 50)};
+        Item[] items = new Item[]{new Item(APPLE.getName(), 10, 50)};
         GildedRose gildedRose = new GildedRose(items);
 
         // When
@@ -26,7 +26,7 @@ class GildedRoseTest {
     @Test
     void passageOfDayCountsHowManyDaysItemIsExpired() {
         // Given
-        Item[] items = new Item[]{new Item(APPLE, 0, 50)};
+        Item[] items = new Item[]{new Item(APPLE.getName(), 0, 50)};
         GildedRose gildedRose = new GildedRose(items);
 
         // When
@@ -39,7 +39,7 @@ class GildedRoseTest {
     @Test
     void degradeQualityWhenDayHasPassed() {
         // Given
-        Item[] items = new Item[]{new Item(APPLE, 10, 50)};
+        Item[] items = new Item[]{new Item(APPLE.getName(), 10, 50)};
         GildedRose gildedRose = new GildedRose(items);
 
         // When
@@ -52,7 +52,7 @@ class GildedRoseTest {
     @Test
     void degradeQualityTwiceAsFastWhenSellDateHasPassed() {
         // Given
-        Item[] items = new Item[]{new Item(APPLE, 0, 50)};
+        Item[] items = new Item[]{new Item(APPLE.getName(), 0, 50)};
         GildedRose gildedRose = new GildedRose(items);
 
         // When
@@ -65,7 +65,7 @@ class GildedRoseTest {
     @Test
     void qualityOfItemCannotBeNegative() {
         // Given
-        Item[] items = new Item[]{new Item(APPLE, 0, 0)};
+        Item[] items = new Item[]{new Item(APPLE.getName(), 0, 0)};
         GildedRose gildedRose = new GildedRose(items);
 
         // When
@@ -78,7 +78,7 @@ class GildedRoseTest {
     @Test
     void agedBrieIncreasesInValueWhenDayHasPassed() {
         // Given
-        Item[] items = new Item[]{new Item(BRIE, 20, 30)};
+        Item[] items = new Item[]{new Item(BRIE.getName(), 20, 30)};
         GildedRose gildedRose = new GildedRose(items);
 
         // When
@@ -91,7 +91,7 @@ class GildedRoseTest {
     @Test
     void qualityOfItemCannotBeMoreThan50() {
         // Given
-        Item[] items = new Item[]{new Item(BRIE, 5, 50)};
+        Item[] items = new Item[]{new Item(BRIE.getName(), 5, 50)};
         GildedRose gildedRose = new GildedRose(items);
 
         // When
@@ -104,7 +104,7 @@ class GildedRoseTest {
     @Test
     void sulfarasDoesNotDecreaseInQuality() {
         // Given
-        Item[] items = new Item[]{new Item(SULFARAS, 0, 80)};
+        Item[] items = new Item[]{new Item(SULFARAS.getName(), 0, 80)};
         GildedRose gildedRose = new GildedRose(items);
 
         // When
@@ -117,7 +117,7 @@ class GildedRoseTest {
     @Test
     void failWhenItemsContainsSulfarasQualityIsNot80() {
         // Given
-        Item[] items = new Item[]{new Item(SULFARAS, 0, 60)};
+        Item[] items = new Item[]{new Item(SULFARAS.getName(), 0, 60)};
         GildedRose gildedRose = new GildedRose(items);
 
         // When
@@ -130,7 +130,7 @@ class GildedRoseTest {
     @Test
     void qualityOfBackStagePassIncreasesByOne() {
         // Given
-        Item[] items = new Item[]{new Item(BACKSTAGE_PASS, 20, 30)};
+        Item[] items = new Item[]{new Item(BACKSTAGE_PASS.getName(), 20, 30)};
         GildedRose gildedRose = new GildedRose(items);
 
         // When
@@ -143,7 +143,7 @@ class GildedRoseTest {
     @Test
     void qualityOfBackStagePassIncreasesByTwoWhenSellInIsTenOrLess() {
         // Given
-        Item[] items = new Item[]{new Item(BACKSTAGE_PASS, 10, 30)};
+        Item[] items = new Item[]{new Item(BACKSTAGE_PASS.getName(), 10, 30)};
         GildedRose gildedRose = new GildedRose(items);
 
         // When
@@ -156,7 +156,7 @@ class GildedRoseTest {
     @Test
     void qualityOfBackStagePassIncreasesByThreeWhenSellInIsFiveOrLess() {
         // Given
-        Item[] items = new Item[]{new Item(BACKSTAGE_PASS, 5, 30)};
+        Item[] items = new Item[]{new Item(BACKSTAGE_PASS.getName(), 5, 30)};
         GildedRose gildedRose = new GildedRose(items);
 
         // When
@@ -169,7 +169,7 @@ class GildedRoseTest {
     @Test
     void qualityOfBackStagePassDropsToZeroWhenConcertHasPassed() {
         // Given
-        Item[] items = new Item[]{new Item(BACKSTAGE_PASS, 0, 30)};
+        Item[] items = new Item[]{new Item(BACKSTAGE_PASS.getName(), 0, 30)};
         GildedRose gildedRose = new GildedRose(items);
 
         // When
@@ -182,7 +182,7 @@ class GildedRoseTest {
     @Test
     void conjuredItemDegradeTwiceAsFast() {
         // Given
-        Item[] items = new Item[]{new Item(CONJURED, 10, 30)};
+        Item[] items = new Item[]{new Item(CONJURED.getName(), 10, 30)};
         GildedRose gildedRose = new GildedRose(items);
 
         // When
