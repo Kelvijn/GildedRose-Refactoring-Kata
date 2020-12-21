@@ -74,7 +74,7 @@ class GildedRoseTest {
         gildedRose.updateQuality();
 
         // Then
-        assertThat(gildedRose.getItems().get(0).quality).isEqualTo(0);
+        assertThat(gildedRose.getItems().get(0).quality).isZero();
     }
 
     @Test
