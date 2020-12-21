@@ -35,15 +35,11 @@ public enum Catalogue implements Processable {
             item.sellIn = --item.sellIn;
             if (!isMaxQuality(item.quality)) {
                 item.quality = item.quality + 1;
-                if (item.sellIn < 11) {
-                    if (!isMaxQuality(item.quality)) {
-                        item.quality = item.quality + 1;
-                    }
+                if (item.sellIn < 10 && !isMaxQuality(item.quality)) {
+                    item.quality = item.quality + 1;
                 }
-                if (item.sellIn < 6) {
-                    if (!isMaxQuality(item.quality)) {
-                        item.quality = item.quality + 1;
-                    }
+                if (item.sellIn < 5 && !isMaxQuality(item.quality)) {
+                    item.quality = item.quality + 1;
                 }
             }
             if (item.sellIn <= 0) {
@@ -55,7 +51,7 @@ public enum Catalogue implements Processable {
     CONJURED("Conjured Mana Cake") {
         @Override
         public Item process(Item item) {
-            item.sellIn = item.sellIn--;
+            item.sellIn = --item.sellIn;
             if (item.quality >= 0) {
                 item.quality = item.quality - 1;
                 if (item.quality >= 0) {
