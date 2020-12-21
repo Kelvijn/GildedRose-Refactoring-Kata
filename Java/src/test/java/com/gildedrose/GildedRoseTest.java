@@ -4,6 +4,8 @@ import com.gildedrose.exceptions.ItemValidationException;
 import org.junit.jupiter.api.Test;
 
 import static com.gildedrose.Catalogue.*;
+import static com.gildedrose.Configuration.MAX_QUALITY;
+import static com.gildedrose.Configuration.SULFARAS_QUALITY;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 
@@ -13,7 +15,7 @@ class GildedRoseTest {
     @Test
     void passageOfDayLowersSellInOfItem() {
         // Given
-        Item[] items = new Item[]{new Item(APPLE.getName(), 10, 50)};
+        Item[] items = new Item[]{new Item(APPLE.getName(), 10, MAX_QUALITY)};
         GildedRose gildedRose = new GildedRose(items);
 
         // When
@@ -26,7 +28,7 @@ class GildedRoseTest {
     @Test
     void passageOfDayCountsHowManyDaysItemIsExpired() {
         // Given
-        Item[] items = new Item[]{new Item(APPLE.getName(), 0, 50)};
+        Item[] items = new Item[]{new Item(APPLE.getName(), 0, MAX_QUALITY)};
         GildedRose gildedRose = new GildedRose(items);
 
         // When
@@ -39,7 +41,7 @@ class GildedRoseTest {
     @Test
     void degradeQualityWhenDayHasPassed() {
         // Given
-        Item[] items = new Item[]{new Item(APPLE.getName(), 10, 50)};
+        Item[] items = new Item[]{new Item(APPLE.getName(), 10, MAX_QUALITY)};
         GildedRose gildedRose = new GildedRose(items);
 
         // When
@@ -52,7 +54,7 @@ class GildedRoseTest {
     @Test
     void degradeQualityTwiceAsFastWhenSellDateHasPassed() {
         // Given
-        Item[] items = new Item[]{new Item(APPLE.getName(), 0, 50)};
+        Item[] items = new Item[]{new Item(APPLE.getName(), 0, MAX_QUALITY)};
         GildedRose gildedRose = new GildedRose(items);
 
         // When
@@ -89,22 +91,22 @@ class GildedRoseTest {
     }
 
     @Test
-    void qualityOfItemCannotBeMoreThan50() {
+    void qualityOfItemCannotBeMoreThanMAX_QUALITY() {
         // Given
-        Item[] items = new Item[]{new Item(BRIE.getName(), 5, 50)};
+        Item[] items = new Item[]{new Item(BRIE.getName(), 5, MAX_QUALITY)};
         GildedRose gildedRose = new GildedRose(items);
 
         // When
         gildedRose.updateQuality();
 
         // Then
-        assertThat(gildedRose.getItems().get(0).quality).isEqualTo(50);
+        assertThat(gildedRose.getItems().get(0).quality).isEqualTo(MAX_QUALITY);
     }
 
     @Test
     void sulfarasDoesNotDecreaseInQuality() {
         // Given
-        Item[] items = new Item[]{new Item(SULFARAS.getName(), 0, 80)};
+        Item[] items = new Item[]{new Item(SULFARAS.getName(), 0, SULFARAS_QUALITY)};
         GildedRose gildedRose = new GildedRose(items);
 
         // When

@@ -14,14 +14,7 @@ class GildedRose {
         return Arrays.asList(items);
     }
 
-    public void setItems(Item[] items) {
-        this.items = items;
-    }
-
     public void updateQuality() {
-        setItems(getItems()
-                .stream()
-                .map(item -> Catalogue.withName(item.name).process(item))
-                .toArray(Item[]::new));
+        getItems().stream().map(item -> Catalogue.withName(item.name).process(item)).toArray(Item[]::new);
     }
 }
