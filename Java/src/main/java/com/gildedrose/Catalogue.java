@@ -62,7 +62,7 @@ public enum Catalogue implements Processable {
         }
     };
 
-    private String name;
+    private final String name;
 
     Catalogue(String name) {
         this.name = name;
