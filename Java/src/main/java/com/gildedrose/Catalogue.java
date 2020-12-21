@@ -16,7 +16,9 @@ public enum Catalogue implements Processable {
         @Override
         public Item process(Item item) {
             item.sellIn = --item.sellIn;
-            if (!isMaxQuality(item.quality)) item.quality = item.quality + 1;
+            if (!isMaxQuality(item.quality)) {
+                item.quality = item.quality + 1;
+            }
             return item;
         }
     },
