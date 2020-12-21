@@ -1,5 +1,9 @@
 package com.gildedrose;
 
+import com.gildedrose.exceptions.ItemValidationException;
+
+import java.util.Arrays;
+
 public enum Catalogue implements Processable {
     APPLE("Apple"),
     ORANGE("Orange"),
@@ -32,6 +36,13 @@ public enum Catalogue implements Processable {
 
     Catalogue(String name) {
         this.name = name;
+    }
+
+    public static Catalogue withName(String name) {
+        return Arrays.stream(Catalogue.values())
+                .filter(catalogue -> catalogue.getName().equals(name))
+                .findAny()
+                .orElseThrow(() -> new ItemValidationException("Item not found in catalogue"));
     }
 
     public String getName() {
