@@ -17,6 +17,9 @@ class GildedRose {
         return Arrays.asList(items);
     }
 
+    public void setItems(Item[] items) {
+        this.items = items;
+    }
 
     public void updateQuality() {
 
@@ -31,7 +34,12 @@ class GildedRose {
             throw new ItemValidationException("Please add all items to catalogue");
         }
 
-        getItems().forEach(this::process);
+//        getItems().forEach(this::process);
+
+        setItems(getItems()
+                .stream()
+                .map(item -> Catalogue.withName(item.name).process(item))
+                .toArray(Item[]::new));
     }
 
     public void process(Item item) {
