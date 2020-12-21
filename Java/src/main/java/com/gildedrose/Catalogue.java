@@ -10,24 +10,55 @@ public enum Catalogue implements Processable {
     BRIE("Aged Brie") {
         @Override
         public Item process(Item item) {
+            item.sellIn = item.sellIn--;
+            if (item.quality < 50) {
+                item.quality = item.quality + 1;
+            }
             return item;
         }
     },
     SULFARAS("Sulfuras, Hand of Ragnaros") {
         @Override
         public Item process(Item item) {
+            if (item.quality != 80) {
+                throw new ItemValidationException("Sulfaras quality has to be 80");
+            }
             return item;
         }
     },
     BACKSTAGE_PASS("Backstage passes to a TAFKAL80ETC concert") {
         @Override
         public Item process(Item item) {
+            item.sellIn = item.sellIn--;
+            if (item.quality < 50) {
+                item.quality = item.quality + 1;
+                if (item.sellIn < 11) {
+                    if (item.quality < 50) {
+                        item.quality = item.quality + 1;
+                    }
+                }
+                if (item.sellIn < 6) {
+                    if (item.quality < 50) {
+                        item.quality = item.quality + 1;
+                    }
+                }
+            }
+            if (item.sellIn <=0) {
+                item.quality = 0;
+            }
             return item;
         }
     },
     CONJURED("Conjured Mana Cake") {
         @Override
         public Item process(Item item) {
+            item.sellIn = item.sellIn--;
+            if (item.quality >= 0) {
+                item.quality = item.quality - 1;
+                if (item.quality >= 0) {
+                    item.quality = item.quality - 1;
+                }
+            }
             return item;
         }
     };
