@@ -1,12 +1,33 @@
 package com.gildedrose;
 
-public enum Catalogue {
-    BRIE("Aged Brie"),
+public enum Catalogue implements Processable {
     APPLE("Apple"),
-    SULFARAS("Sulfuras, Hand of Ragnaros"),
-    BACKSTAGE_PASS("Backstage passes to a TAFKAL80ETC concert"),
-    CONJURED("Conjured")
-    ;
+    ORANGE("Orange"),
+    BRIE("Aged Brie") {
+        @Override
+        public Item process(Item item) {
+            return item;
+        }
+    },
+    SULFARAS("Sulfuras, Hand of Ragnaros") {
+        @Override
+        public Item process(Item item) {
+            return item;
+        }
+    },
+    BACKSTAGE_PASS("Backstage passes to a TAFKAL80ETC concert") {
+        @Override
+        public Item process(Item item) {
+            return item;
+        }
+    },
+    CONJURED("Conjured Mana Cake") {
+        @Override
+        public Item process(Item item) {
+            return item;
+        }
+    };
+
     private String name;
 
     Catalogue(String name) {

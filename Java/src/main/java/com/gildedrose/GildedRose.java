@@ -17,6 +17,23 @@ class GildedRose {
         return Arrays.asList(items);
     }
 
+
+    public void updateQuality() {
+
+        List<String> catalogue = Arrays.stream(Catalogue.values()).map(Catalogue::getName).collect(Collectors.toList());
+
+        boolean itemsAreAddedToCatalogue = getItems()
+                .stream()
+                .map(item -> item.name)
+                .allMatch(catalogue::contains);
+
+        if (!itemsAreAddedToCatalogue) {
+            throw new ItemValidationException("Please add all items to catalogue");
+        }
+
+        getItems().forEach(this::process);
+    }
+
     public void process(Item item) {
         if (!item.name.equals("Aged Brie")
                 && !item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
@@ -66,21 +83,5 @@ class GildedRose {
                 }
             }
         }
-    }
-
-    public void updateQuality() {
-
-        List<String> catalogue = Arrays.stream(Catalogue.values()).map(Catalogue::getName).collect(Collectors.toList());
-
-        boolean itemsAreAddedToCatalogue = getItems()
-                .stream()
-                .map(item -> item.name)
-                .allMatch(catalogue::contains);
-
-        if (!itemsAreAddedToCatalogue) {
-            throw new ItemValidationException("Please add all items to catalogue");
-        }
-
-        getItems().forEach(this::process);
     }
 }
